@@ -1,39 +1,52 @@
 {
-  "capabilities": [
+  "capabilities":
+  [
     {
       "browserName": "firefox",
-      "acceptSslCerts": true,
-      "javascriptEnabled": true,
-      "takesScreenshot": false,
-      "firefox_profile": "",
-      "browser-version": "27",
-      "platform": "WINDOWS",
-      "maxInstances": 5,
-      "firefox_binary": "",
-      "cleanSession": true
+      "marionette": true,
+      "maxInstances": 10,
+      "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "chrome",
-      "maxInstances": 5,
-      "platform": "WINDOWS",
-      "webdriver.chrome.driver": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+      "maxInstances": 10,
+      "seleniumProtocol": "WebDriver"
     },
     {
-      "browserName": "internet explorer",
-      "maxInstances": 1,
-      "platform": "WINDOWS",
-      "webdriver.ie.driver": "C:/Program Files (x86)/Internet Explorer/iexplore.exe"
+      "browserName": "opera",
+      "platform": "WIN10",
+      "maxInstances": 10,
+      "seleniumProtocol": "WebDriver",
+	  "webdriver.chrome.driver": "C:/bin/operadriver.exe"
+    },
+    {
+      "browserName": "yandex",
+      "platform": "WIN10",
+      "maxInstances": 5,
+	  "seleniumProtocol": "WebDriver",
+	  "webdriver.chrome.driver": "C:/bin/yandexdriver.exe"
+    },
+	{
+      "browserName": "MicrosoftEdge",
+      "platform": "WIN10",
+      "maxInstances": 5,
+      "seleniumProtocol": "WebDriver",
+	  "webdriver.edge.driver": "C:/bin/msedgedriver.exe"
     }
   ],
-  "configuration": {
-    "_comment" : "Configuration for Node",
-    "cleanUpCycle": 2000,
-    "timeout": 30000,
-    "proxy": "org.openqa.grid.selenium.proxy.WebDriverRemoteProxy",
-    "port": 5555,
-    "host": ip,
-    "register": true,
-    "hubPort": 4444,
-    "maxSession": 5
-  }
+  "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+  "maxSession": 5,
+  "port": -1,
+  "register": true,
+  "registerCycle": 5000,
+  "hub": "http://192.168.8.100:4444",
+  "nodeStatusCheckTimeout": 5000,
+  "nodePolling": 5000,
+  "role": "node",
+  "unregisterIfStillDownAfter": 60000,
+  "downPollingLimit": 2,
+  "debug": false,
+  "servlets" : [],
+  "withoutServlets": [],
+  "custom": {}
 }
