@@ -5,7 +5,7 @@ from selenium import webdriver
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", choices=["chrome", "firefox", "opera"])
-    parser.addoption("--executor", action="store", default="192.168.8.112")
+    parser.addoption("--executor", action="store", default="192.168.1.77")
 
 
 @pytest.fixture
