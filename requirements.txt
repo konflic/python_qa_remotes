@@ -1,4 +1,4 @@
 selenium==3.141.0
 pytest==6.2.2
 pytest-xdist==2.2.1
-mitmproxy==6.0.2
+mitmproxy==7.0.3
