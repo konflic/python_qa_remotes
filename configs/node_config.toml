@@ -1,0 +1,4 @@
+[node]
+max-sessions = 20
+override-max-sessions = true
+session-timeout = 60

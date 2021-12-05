@@ -4,8 +4,12 @@ from selenium import webdriver
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", choices=["chrome", "firefox", "opera"])
-    parser.addoption("--executor", action="store", default="192.168.1.77")
+    parser.addoption(
+        "--browser",
+        default="chrome",
+        choices=["chrome", "firefox", "opera", "MicrosoftEdge"]
+    )
+    parser.addoption("--executor", default="192.168.1.88")
 
 
 @pytest.fixture
@@ -26,10 +30,14 @@ def chrome(request):
 def remote(request):
     browser = request.config.getoption("--browser")
     executor = request.config.getoption("--executor")
-    wd = webdriver.Remote(
+
+    driver = webdriver.Remote(
         command_executor=f"http://{executor}:4444/wd/hub",
         desired_capabilities={"browserName": browser}
     )
-    wd.maximize_window()
-    request.addfinalizer(wd.quit)
-    return wd
+    driver.implicitly_wait(2)
+    driver.maximize_window()
+
+    request.addfinalizer(driver.quit)
+
+    return driver
