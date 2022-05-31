@@ -26,6 +26,7 @@ def remote(request):
     else:
         options = Options()
 
+    # BrowserStack не работает с selenium 4.2.0
     driver = webdriver.Remote(
         command_executor=f"http://{executor}:4444/wd/hub",
         desired_capabilities={"browserName": browser, "platformName": "LINUX"}, options=options
