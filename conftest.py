@@ -1,7 +1,10 @@
+import time
+
 import pytest
 
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import ChromiumOptions
+from selenium.webdriver.chrome.options import Options
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -13,31 +16,27 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture
-def firefox(request):
-    wd = webdriver.Firefox()
-    request.addfinalizer(wd.quit)
-    return wd
-
-
-@pytest.fixture
-def chrome(request):
-    wd = webdriver.Chrome()
-    request.addfinalizer(wd.quit)
-    return wd
-
-
-@pytest.fixture
 def remote(request):
     browser = request.config.getoption("--browser")
     executor = request.config.getoption("--executor")
 
+    if browser == "chrome":
+        options = ChromiumOptions()
+        options.headless = True
+    else:
+        options = Options()
+
     driver = webdriver.Remote(
         command_executor=f"http://{executor}:4444/wd/hub",
-        desired_capabilities={"browserName": browser}
+        desired_capabilities={"browserName": browser, "platformName": "LINUX"}, options=options
     )
-    driver.implicitly_wait(2)
+
     driver.maximize_window()
 
-    request.addfinalizer(driver.quit)
+    def fin():
+        time.sleep(1)
+        driver.quit()
+
+    request.addfinalizer(fin)
 
     return driver
