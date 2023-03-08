@@ -10,9 +10,9 @@ def pytest_addoption(parser):
     parser.addoption(
         "--browser",
         default="chrome",
-        choices=["chrome", "firefox", "opera", "MicrosoftEdge"]
+        # choices=["chrome", "firefox", "yandex", "MicrosoftEdge"]
     )
-    parser.addoption("--executor", default="192.168.1.88")
+    parser.addoption("--executor", default="192.168.0.106")
 
 
 @pytest.fixture
@@ -29,13 +29,17 @@ def remote(request):
     # BrowserStack не работает с selenium 4.2.0
     driver = webdriver.Remote(
         command_executor=f"http://{executor}:4444/wd/hub",
-        desired_capabilities={"browserName": browser, "platformName": "LINUX"}, options=options
+        desired_capabilities={
+            "browserName": browser,
+            # "browserVersion": "108"
+            # "platformName": "LINUX"
+        },
+        # options=options
     )
 
     driver.maximize_window()
 
     def fin():
-        time.sleep(1)
         driver.quit()
 
     request.addfinalizer(fin)

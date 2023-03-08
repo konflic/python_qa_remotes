@@ -9,8 +9,7 @@ def test_google_0(remote):
 
 def test_yandex_0(remote):
     remote.get("https://ya.ru")
-    remote.find_element(value="text")
-    remote.find_element(By.CSS_SELECTOR, "a[title='Яндекс']")
+    remote.find_element(By.NAME, "text")
     assert remote.title == "Яндекс"
 
 
@@ -22,8 +21,7 @@ def test_google_1(remote):
 
 def test_yandex_1(remote):
     remote.get("https://ya.ru")
-    remote.find_element(value="text")
-    remote.find_element(By.CSS_SELECTOR, "a[title='Яндекс']")
+    remote.find_element(By.NAME, "text")
     assert remote.title == "Яндекс"
 
 
@@ -35,6 +33,5 @@ def test_google_2(remote):
 
 def test_yandex_2(remote):
     remote.get("https://ya.ru")
-    remote.find_element(value="text")
-    remote.find_element(By.CSS_SELECTOR, "a[title='Яндекс']")
+    remote.find_element(By.NAME, "text")
     assert remote.title == "Яндекс"
