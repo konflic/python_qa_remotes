@@ -1,0 +1,6 @@
+[node]
+detect-drivers = false
+[[node.driver-configuration]]
+display-name = "Yandex"
+stereotype = "{\"browserName\": \"chrome\", \"browserVersion\": \"100\"}"
+webdriver-executable = 'C:\Users\user\selenium\yandexdriver.exe'
